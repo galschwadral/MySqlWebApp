@@ -1,10 +1,50 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Erste WebApp";
+    string anything = "";
+    ViewData["Title"] = "Test";
+    
+    protected void insertBtn(object sender, EventArgs e)
+        {
+            MySqlCon session = new MySqlCon();
+            try
+            {
+                anything = "success";
+                session.Insert();
+                anything = session.info;
+                session.CloseConnection();
+            }
+            catch (Exception ex)
+            {
+                anything = ex.ToString();
+            }
+        }
 }
+    <script language="C#" runat="server">
 
-<div class="text-center">
-    <h1 class="display-4">Test</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+        protected void insertBtn(object sender, EventArgs e)
+        {
+            MySqlCon session = new MySqlCon();
+            try
+            {
+                anything = "success";
+                session.Insert();
+                anything = session.info;
+                session.CloseConnection();
+            }
+            catch (Exception ex)
+            {
+                anything = ex.ToString();
+            }
+        }
+
+    </script>
+    <div class="text-center">
+        <h1 class="display-4">Test</h1>
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+        <p> @anything</p>
+        <p> @anything</p>
+        <p> @anything</p>
+        <p> @anything</p>
+        <textarea rows="2" cols="10"></textarea><button id="btn1" type="button" runat="server" onserverclick="insertBtn">insert</button>
+    </div>
